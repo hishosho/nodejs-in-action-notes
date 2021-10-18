@@ -1,0 +1,7 @@
+const currency = require('./currency')
+const currencyClass = require('./CurrencyClass')
+console.log('50 c to u')
+console.log(currency.canadianToUS(50))
+console.log('30 u to c')
+console.log(currency.USToCanadian(30))
+console.log('currencyClass=', currencyClass)
