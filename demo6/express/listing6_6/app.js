@@ -11,9 +11,12 @@ const usersRouter = require('./routes/users');
 const entries = require('./routes/entries');
 const register = require('./routes/register');
 const login = require('./routes/login');
+const api = require('./routes/api')
 
 const validate = require('./middleware/validate');
 const user = require('./middleware/user')
+
+const Entry = require('./models/entry')
 
 const app = express();
 
@@ -37,6 +40,12 @@ app.use(messages);
 
 //app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+app.use('/api', api.auth)
+app.use('/api', api.auth); 
+app.get('/api/user/:id', api.user);
+
+app.get('/api/entries/:page?', page(Entry.count), api.entries);
 
 app.get('/', entries.list)
 app.get('/post', entries.form)
